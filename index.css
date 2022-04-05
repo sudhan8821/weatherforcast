@@ -1,0 +1,125 @@
+@import url("https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap");
+body {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  background-image: radial-gradient(
+    circle,
+    rgba(5, 8, 114, 1),
+    rgba(7, 3, 53, 1)
+  );
+  color: #defaf9;
+  font-family: "Gowun Dodum", sans-serif;
+  font-size: 22px;
+}
+
+/* .weather {
+  width: 80%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 20px 0;
+} */
+
+.weather_search {
+  width: 100%;
+  padding: 15px 10px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.15);
+  font-size: 20px;
+  color: inherit;
+  margin-bottom: 20px;
+}
+
+input::placeholder {
+  color: #fff;
+}
+
+/* .weather_today {
+  display: flex;
+  justify-content: space-between;
+} */
+
+.weather_image {
+  max-width: 210px;
+  align-self: center;
+  width: 100%;
+}
+
+.weather_city {
+  /* font-size: 36px;
+  font-weight: 600; */
+  /* margin: 20px 0; */
+  font-size: 30px;
+  font-weight: bold;
+}
+.weather_day {
+  font-size: 30px;
+  margin: 10px 0;
+  font-weight: 400;
+}
+
+.weather_indicator::before {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  height:27px ;
+  width: 27px;
+  background-size: cover;
+  /* margin-right: 10px; */
+}
+
+.weather_indicator--humidity::before {
+  background-image: url(./humidity.png);
+}
+
+.weather_indicator--wind::before {
+  background-image: url(./wind.png);
+}
+
+.weather_indicator--pressure::before {
+  background-image: url(./pressure.png);
+}
+
+.weather_temperature {
+  font-size: 30px;
+  font-weight: bold;
+  /* text-align: right; */
+}
+
+.weather_forecast {
+  width: 95%;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.weather_forecast_icon {
+  max-width: 65%;
+}
+
+.weather_forecast_item {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  border: 2px solid blue;
+   margin: 5px;
+}
+.weather_forecast_day
+{
+  line-height: 3;
+}
+.value
+{
+  font-size: 32;
+}
+.img_style
+{
+  text-align: right;
+}
+
+.weather_details {
+  text-align: left;
+}
+.main_img
+{
+   text-align: right;
+}
