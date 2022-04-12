@@ -20,7 +20,7 @@ let pressure = document.querySelector(".weather_indicator--pressure>.value");
 let temperature = document.querySelector(".weather_temperature>.value");
 let image = document.querySelector(".weather_image");
 let forecastBlock = document.querySelector(".weather_forecast");
-let datalist=document.getElementById("suggestions");
+let suggestions=document.getElementById("suggestions");
 let weatherImages = [
   {
     url: "./broken-clouds.png",
@@ -148,14 +148,13 @@ searchInp.addEventListener("input", async () => {
   if (searchInp.value.length <= 2) {
     return;
   }
-  datalist.innerHTML="";
+  suggestions.innerHTML="";
   let endpoint = geocodingBaseEndpoint + searchInp.value;
   let result = await fetch(endpoint);
   result = await result.json();
   result.forEach((city) => {
-    let option=document.createElement("option");
-    option.value=`${city.name}${city.state ? "," + city.state :""},${city.country}`;
-    datalist.appendChild(option);
+    suggestions.innerHTML+=`<option value=${city.name},${city.state ? ""+city.state:" "},${city.country}></option>`
+    // ${city.name},${city.state},${city.country}
   });
 });
 let updateForecast = (forecast) => {
@@ -201,21 +200,21 @@ let updateForecast = (forecast) => {
  async function show(){
      let data=await promise1;
     //  console.log(lat);
-      try {
-        let point="https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&appid="+weatherAPIKey;
-        let response=await fetch(point);
-        let result=await response.json();
-        let c=result.name;
-        swal.fire(
-          {
-           icon:'success',
-           title:`Got Your Location: ${c}`,
-          }
-        )
-        weatherForCity(c);
-      } catch (error) {
-        
-      }
+     let point="https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&appid="+weatherAPIKey;
+    //  let point1=basepoint+lat+"&lon="+lon;
+    //  console.log(point);
+     let response=await fetch(point);
+     let result=await response.json();
+    //  console.log(result);
+    //  console.log(result.name);
+     let c=result.name;
+     swal.fire(
+       {
+        icon:'success',
+        title:`Got Your Location: ${c}`,
+       }
+     )
+     weatherForCity(c);
    };
  window.onload=show;
 
