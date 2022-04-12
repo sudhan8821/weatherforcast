@@ -20,7 +20,7 @@ let pressure = document.querySelector(".weather_indicator--pressure>.value");
 let temperature = document.querySelector(".weather_temperature>.value");
 let image = document.querySelector(".weather_image");
 let forecastBlock = document.querySelector(".weather_forecast");
-let suggestions=document.getElementById("suggestions");
+let datalist=document.getElementById("suggestions");
 let weatherImages = [
   {
     url: "./broken-clouds.png",
@@ -148,12 +148,14 @@ searchInp.addEventListener("input", async () => {
   if (searchInp.value.length <= 2) {
     return;
   }
-  suggestions.innerHTML="";
+  datalist.innerHTML="";
   let endpoint = geocodingBaseEndpoint + searchInp.value;
   let result = await fetch(endpoint);
   result = await result.json();
   result.forEach((city) => {
-    suggestions.innerHTML+=`<option value=${city.name},${city.state ? ""+city.state:" "},${city.country}>${city.name},${city.state},${city.country}</option>`
+        let option=document.createElement("option");
+    option.value=`${city.name}${city.state ? "," + city.state :""},${city.country}`;
+    datalist.appendChild(option);
   });
 });
 let updateForecast = (forecast) => {
