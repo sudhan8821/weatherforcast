@@ -153,8 +153,7 @@ searchInp.addEventListener("input", async () => {
   let result = await fetch(endpoint);
   result = await result.json();
   result.forEach((city) => {
-    suggestions.innerHTML+=`<option value=${city.name},${city.state ? ""+city.state:" "},${city.country}></option>`
-    // ${city.name},${city.state},${city.country}
+    suggestions.innerHTML+=`<option value=${city.name},${city.state ? ""+city.state:" "},${city.country}>${city.name},${city.state},${city.country}</option>`
   });
 });
 let updateForecast = (forecast) => {
