@@ -23,39 +23,39 @@ let forecastBlock = document.querySelector(".weather_forecast");
 let datalist=document.getElementById("suggestions");
 let weatherImages = [
   {
-    url: "./broken-clouds.png",
+    url: "images/broken-clouds.png",
     ids: [803, 804],
   },
   {
-    url: "./clear-sky.png",
+    url: "images/clear-sky.png",
     ids: [800],
   },
   {
-    url: "./few-clouds.png",
+    url: "images/few-clouds.png",
     ids: [801],
   },
   {
-    url: "./mist.png",
+    url: "images/mist.png",
     ids: [701, 711, 721, 731, 741, 751, 761, 762, 771, 781],
   },
   {
-    url: "./rain.png",
+    url: "images/rain.png",
     ids: [500, 501, 502, 503, 504],
   },
   {
-    url: "./scattered-clouds.png",
+    url: "images/scattered-clouds.png",
     ids: [802],
   },
   {
-    url: "./shower-rain.png",
+    url: "images/shower-rain.png",
     ids: [520, 521, 522, 531, 300, 301, 302, 310, 311, 312, 313, 314, 321],
   },
   {
-    url: "./snow.png",
+    url: "images/snow.png",
     ids: [511, 600, 601, 602, 611, 612, 613, 615, 616, 620, 621, 622],
   },
   {
-    url: "./thunderstorm.png",
+    url: "images/thunderstorm.png",
     ids: [200, 201, 202, 210, 211, 212, 221, 230, 231, 232],
   },
 ];
@@ -153,7 +153,7 @@ searchInp.addEventListener("input", async () => {
   let result = await fetch(endpoint);
   result = await result.json();
   result.forEach((city) => {
-        let option=document.createElement("option");
+    let option=document.createElement("option");
     option.value=`${city.name}${city.state ? "," + city.state :""},${city.country}`;
     datalist.appendChild(option);
   });
@@ -201,21 +201,21 @@ let updateForecast = (forecast) => {
  async function show(){
      let data=await promise1;
     //  console.log(lat);
-     let point="https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&appid="+weatherAPIKey;
-    //  let point1=basepoint+lat+"&lon="+lon;
-    //  console.log(point);
-     let response=await fetch(point);
-     let result=await response.json();
-    //  console.log(result);
-    //  console.log(result.name);
-     let c=result.name;
-     swal.fire(
-       {
-        icon:'success',
-        title:`Got Your Location: ${c}`,
-       }
-     )
-     weatherForCity(c);
+      try {
+        let point="https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&appid="+weatherAPIKey;
+        let response=await fetch(point);
+        let result=await response.json();
+        let c=result.name;
+        swal.fire(
+          {
+           icon:'success',
+           title:`Got Your Location: ${c}`,
+          }
+        )
+        weatherForCity(c);
+      } catch (error) {
+        
+      }
    };
  window.onload=show;
 
